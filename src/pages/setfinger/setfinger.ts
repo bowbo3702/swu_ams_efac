@@ -46,7 +46,7 @@ export class SetfingerPage {
     }
  
     //check can user fingerprint
-    if(false)
+    if(! this.isAvailable)
     {
         //แจ้งเตือนกรณี login not success
         let alert = this.alert.create({
@@ -55,7 +55,7 @@ export class SetfingerPage {
             {
               text: 'ตกลง',
               handler: () => {
-                this.navCtrl.pop();
+                //this.navCtrl.pop();
               }
             }
           ]
