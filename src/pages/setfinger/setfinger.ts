@@ -79,14 +79,18 @@ export class SetfingerPage {
     return result;
   }
   CallFingerPrintAIO(){
-    console.log('show');
     this.finger.show({
-     clientId: "Fingerprint-Demo"
-    }).then(result => {
-          console.log(result);
-        }).catch(err => {
-          console.log(err);
-        });
+      clientId: 'Fingerprint-Demo',
+      //clientSecret: 'password', // Only Android
+      //localizedFallbackTitle: 'Use Pin', // Only iOS
+      //localizedReason: 'Please authenticate' // Only iOS
+    })
+      .then((result: any) => {
+        //this.navCtrl.setRoot('HomePage');
+      })
+      .catch((error: any) => {
+        console.log('err: ', error);
+      });
   }
   CheckTuchID():boolean
   {
