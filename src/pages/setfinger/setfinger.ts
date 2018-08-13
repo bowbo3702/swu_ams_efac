@@ -29,12 +29,12 @@ export class SetfingerPage {
 ) {
     this.isAvailable=false;
     console.log(this.platform.platforms.name);
+    this.presentToast('platform: ' + this.platform.platforms.name);
     if (this.platform.is('ios')) {
      if(this.CheckTuchID()){
        this.sModeFinger = "ios";
        this.isAvailable=true;
      }
-     
     }
     else if (this.platform.is('android')) {
       if(this.CheckFingerAndroid()){
