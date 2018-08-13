@@ -91,4 +91,6 @@
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
     <plugin name="phonegap-plugin-barcodescanner" spec="^8.0.0" />
+    <plugin name="cordova-plugin-touch-id" spec="^3.3.1" />
+    <plugin name="cordova-plugin-android-fingerprint-auth" spec="^1.4.4" />
 </widget>

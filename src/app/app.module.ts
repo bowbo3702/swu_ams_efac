@@ -37,8 +37,10 @@ import {Camera} from '@ionic-native/camera';
 import {QRScanner} from '@ionic-native/qr-scanner';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 import {FingerprintAIO} from '@ionic-native/fingerprint-aio';
-import { IonicStorageModule } from '@ionic/storage';
+import {IonicStorageModule } from '@ionic/storage';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
+import { TouchID } from '@ionic-native/touch-id';
+import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
 //Provider
 import { ApiProvider } from '../providers/api/api';
 import { UserloginProvider } from '../providers/userlogin/userlogin';
@@ -114,7 +116,8 @@ import { OmmMeetingListProvider } from '../providers/omm-meeting-list/omm-meetin
     UserloginProvider,
     CommonProvider,
     OmmMeetingListProvider,
-    InAppBrowser
+    InAppBrowser,
+    TouchID
   ]
 })
 export class AppModule {}
