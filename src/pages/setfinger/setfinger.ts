@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams , AlertController, ToastController } from 'ionic-angular';
+// import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 import { TouchID } from '@ionic-native/touch-id';
 import { Platform } from 'ionic-angular';
@@ -28,6 +29,7 @@ export class SetfingerPage {
   , private androidFingerprintAuth: AndroidFingerprintAuth
 ) {
     this.isAvailable=false;
+    
     console.log(this.platform.platforms.name);
     this.presentToast('platform: ' + this.platform.platforms.name);
     if (this.platform.is('ios')) {
@@ -42,15 +44,9 @@ export class SetfingerPage {
         this.isAvailable=true;
       }
     }
-    if(!this.isAvailable)
-    {
-      if(this.CheckFingerAIO()){
-        this.sModeFinger = this.platform.platforms.name;
-        this.isAvailable=true;
-      }
-    }
+ 
     //check can user fingerprint
-    if(!this.isAvailable)
+    if(false)
     {
         //แจ้งเตือนกรณี login not success
         let alert = this.alert.create({
@@ -66,16 +62,35 @@ export class SetfingerPage {
         });
         alert.present();
     }
+  
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SetfingerPage');
   }
+ async CheckFingerAIO_async(){
+   try
+   {
+     this.platform.ready();
+    const avail = await this.finger.isAvailable();
+    if(avail === "OK"){
+      this.finger.show({
+        clientId: 'Fingerprint-Demo',
+        //clientSecret: 'password', // Only Android
+        //localizedFallbackTitle: 'Use Pin', // Only iOS
+        //localizedReason: 'Please authenticate' // Only iOS
+      });
+    }
+  }
+  catch(e){
+    this.presentToast('Error:' + e);
+  }
+}
   CheckFingerAIO(): boolean{
     console.log('check');
     let result = false;
     this.finger.isAvailable().then(res =>{
       console.log(res);
-      result =  true;
+      result =  (res == "OK");
     }).catch(err => {
       console.log(err);
       result =  false;
