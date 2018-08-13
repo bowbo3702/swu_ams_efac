@@ -36,17 +36,21 @@ export class SetfingerPage {
      }
      
     }
-    else   if (this.platform.is('android')) {
+    else if (this.platform.is('android')) {
       if(this.CheckFingerAndroid()){
         this.sModeFinger = "android";
         this.isAvailable=true;
       }
     }
-    else if(this.CheckFingerAIO()){
-      this.sModeFinger = this.platform.platforms.name;
+    if(!this.isAvailable)
+    {
+      if(this.CheckFingerAIO()){
+        this.sModeFinger = this.platform.platforms.name;
+        this.isAvailable=true;
+      }
     }
     //check can user fingerprint
-    if( this.isAvailable)
+    if(!this.isAvailable)
     {
         //แจ้งเตือนกรณี login not success
         let alert = this.alert.create({
@@ -69,8 +73,8 @@ export class SetfingerPage {
   CheckFingerAIO(): boolean{
     console.log('check');
     let result = false;
-    this.finger.isAvailable().then(result =>{
-      console.log(result);
+    this.finger.isAvailable().then(res =>{
+      console.log(res);
       result =  true;
     }).catch(err => {
       console.log(err);
@@ -79,6 +83,7 @@ export class SetfingerPage {
     return result;
   }
   CallFingerPrintAIO(){
+    this.finger.isAvailable().then(res =>{
     this.finger.show({
       clientId: 'Fingerprint-Demo',
       //clientSecret: 'password', // Only Android
@@ -91,6 +96,9 @@ export class SetfingerPage {
       .catch((error: any) => {
         console.log('err: ', error);
       });
+    }).catch(err => {
+      this.presentToast('TouchID is not available ' + err);
+    });
   }
   CheckTuchID():boolean
   {
@@ -132,8 +140,7 @@ export class SetfingerPage {
       }
     )
     .catch((error: any) => {
-      this.presentToast(error);
-      console.log('err: ', error);
+      this.presentToast('err: '+ error);
     });
 
   }
@@ -147,11 +154,11 @@ export class SetfingerPage {
    return result;
   }
   CallFingerPrintAndroid(){
+
     this.androidFingerprintAuth.isAvailable()
     .then((result)=> {
       if(result.isAvailable){
         // it is available
-  
         this.androidFingerprintAuth.encrypt({ clientId: 'myAppName', username: 'myUsername', password: 'myPassword' })
           .then(result => {
              if (result.withFingerprint) {
@@ -171,7 +178,7 @@ export class SetfingerPage {
         // fingerprint auth isn't available
       }
     })
-    .catch(error => console.error(error));
+    .catch(error =>{ this.presentToast('err: '+ error);});
   }
   presentToast(sMsg) {
     let toast = this.toast.create({
