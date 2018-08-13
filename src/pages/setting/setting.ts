@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import {SetfingerPage} from '../setfinger/setfinger';
 /**
  * Generated class for the SettingPage page.
  *
@@ -20,5 +20,14 @@ export class SettingPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingPage');
   }
-
+  GoToPage(sPage){
+    switch (sPage) {
+      case "SetPin":
+       // this.navCtrl.push(SetPin);
+          break;
+      case "SetFinger":
+         this.navCtrl.push(SetfingerPage);
+         break;
+    }
+  }
 }

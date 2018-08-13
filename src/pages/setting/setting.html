@@ -14,5 +14,17 @@
 
 
 <ion-content padding>
-
+    <ion-list>
+      <!-- Button item with an icon on the left -->
+      <button ion-item  detail-push (click)="GoToPage('SetFinger')">
+          <ion-icon name="finger-print" item-start></ion-icon>
+          ลายนิ้วมือ
+          <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </button>
+        <button ion-item  detail-push (click)="GoToPage('SetPin')">
+        <ion-icon name="key" item-start></ion-icon>
+          รหัสผ่าน
+          <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </button>
+    </ion-list>
 </ion-content>

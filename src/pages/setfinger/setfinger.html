@@ -17,12 +17,14 @@
             <img src="assets/imgs/fingerprint.png" style="width:50%; margin: 0 auto !important;text-align: center;" >
         </ion-col>
         <ion-col col-12  style="text-align: center;">
-          <span style="color: #232423;font-size:larger;">คุณลืมรหัสผ่านใช่ไหม</span><br>
-          <span style="color: #333633;font-size:x-larger;">โปรดกรอก E-mail ของคุณ</span>
+          <span style="color: #232423;font-size:larger;">กดปุ่มเพื่อบันทึกลายนิ้วมือ</span>
         </ion-col>
-
       </ion-row>
-    
+      <ion-row>
+          <ion-col col-12 style="text-align:center;">
+                <button ion-button full round color="primary"  (click)="CallFingerPrint()">Scan Fingerprint</button>
+            </ion-col>
+        </ion-row>
     </ion-grid>
   </form>
 </ion-content>
