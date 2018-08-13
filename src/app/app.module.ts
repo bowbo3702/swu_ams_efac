@@ -101,7 +101,8 @@ import { OmmMeetingListProvider } from '../providers/omm-meeting-list/omm-meetin
   providers: [
     StatusBar,
     { provide: LOCALE_ID, useValue: 'th-TH' },
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {
+      provide: ErrorHandler, useClass: IonicErrorHandler},
     // plugin
     Network,
     SQLite,
@@ -111,13 +112,14 @@ import { OmmMeetingListProvider } from '../providers/omm-meeting-list/omm-meetin
     QRScanner,
     BarcodeScanner,
     FingerprintAIO,
-    //providor
-    ApiProvider,
-    UserloginProvider,
-    CommonProvider,
-    OmmMeetingListProvider,
     InAppBrowser,
-    TouchID
+    TouchID,
+    AndroidFingerprintAuth,
+     //providor
+     OmmMeetingListProvider,
+     ApiProvider,
+     UserloginProvider,
+     CommonProvider,
   ]
 })
 export class AppModule {}
