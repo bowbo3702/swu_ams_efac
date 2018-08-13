@@ -3,10 +3,11 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Platform } from 'ionic-angular';
 //import { SQLite ,SQLiteObject} from '@ionic-native/sqlite';
-
+//Page
 import { SetpinPage } from '../setpin/setpin';
 import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
+import { MenuPage } from '../menu/menu';
 import { UserAccount } from '../../models/UserAccount';
 @Component({
   selector: 'page-confirmpin',
@@ -52,6 +53,8 @@ export class ConfirmpinPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConfirmpinPage');
+    this.UserAccountData = this.navParams.get("UserAccountData");
+    console.log(this.UserAccountData);
   }
   ConfirmPIN(): void {
     console.log('sPINConfirm:' + this.sPINConfirm);
@@ -59,6 +62,7 @@ export class ConfirmpinPage {
     if (this.sPINConfirm.length == 5) {
       if (this.sPIN == this.sPINConfirm) {
         console.log('pin match');
+        console.log(this.UserAccountData);
         this.UserAccountData.sPIN = this.sPINConfirm;
         console.log(this.UserAccountData);
         this.storage.ready().then(() => { this.storage.set('useraccount', this.UserAccountData); });

@@ -9,14 +9,22 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-
 import {LoginPage} from  '../pages/login/login';
 import {ForgotpasswordPage} from  '../pages/forgotpassword/forgotpassword';
 import {SetpinPage} from '../pages/setpin/setpin';
 import {ConfirmpinPage} from '../pages/confirmpin/confirmpin';
 import {SetfingerPage} from '../pages/setfinger/setfinger';
+import {MenuPage} from '../pages/menu/menu';
+import {ProfilePage} from '../pages/profile/profile';
+import { QrcodePage} from '../pages/qrcode/qrcode';
+import { MeetingListPage} from '../pages/meeting-list/meeting-list';
+import { MeetingDetailPage} from '../pages/meeting-detail/meeting-detail';
+import { AutoCompletePersonPage} from '../pages/auto-complete-person/auto-complete-person';
+import {SettingPage} from  '../pages/setting/setting';
+//
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
 //locale
 import localeTh from '@angular/common/locales/th';
 import { registerLocaleData } from '@angular/common';
@@ -27,6 +35,7 @@ import {SQLite} from '@ionic-native/sqlite';
 import {AppVersion} from '@ionic-native/app-version';
 import {Camera} from '@ionic-native/camera';
 import {QRScanner} from '@ionic-native/qr-scanner';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 import {FingerprintAIO} from '@ionic-native/fingerprint-aio';
 import { IonicStorageModule } from '@ionic/storage';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
@@ -47,7 +56,14 @@ import { OmmMeetingListProvider } from '../providers/omm-meeting-list/omm-meetin
     ForgotpasswordPage,
     SetpinPage,
     ConfirmpinPage,
-    SetfingerPage
+    SetfingerPage,
+    MenuPage,
+    ProfilePage,
+    QrcodePage,
+    MeetingListPage,
+    MeetingDetailPage,
+    AutoCompletePersonPage,
+    SettingPage
   ],
   imports: [
     BrowserModule,
@@ -71,7 +87,14 @@ import { OmmMeetingListProvider } from '../providers/omm-meeting-list/omm-meetin
     ForgotpasswordPage,
     SetpinPage,
     ConfirmpinPage,
-    SetfingerPage
+    SetfingerPage,
+    MenuPage,
+    ProfilePage,
+    QrcodePage,
+    MeetingListPage,
+    MeetingDetailPage,
+    AutoCompletePersonPage,
+    SettingPage
   ],
   providers: [
     StatusBar,
@@ -84,12 +107,14 @@ import { OmmMeetingListProvider } from '../providers/omm-meeting-list/omm-meetin
     SplashScreen,
     Camera,
     QRScanner,
+    BarcodeScanner,
     FingerprintAIO,
     //providor
     ApiProvider,
     UserloginProvider,
     CommonProvider,
-    OmmMeetingListProvider
+    OmmMeetingListProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}

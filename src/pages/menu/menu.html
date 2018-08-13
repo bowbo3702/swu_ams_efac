@@ -1,0 +1,60 @@
+
+<ion-navbar>
+    <ion-title style="text-align:center;"><span style="color:hsl(7, 95%, 40%);">SWU</span><span style="color:rgb(7, 76, 122);"> Med </span><span style="color:hsl(129, 85%, 27%);"> e-Fac</span></ion-title>
+  </ion-navbar>
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col text-center col-3 style="text-align: center;">&nbsp;</ion-col>
+          <ion-col text-center col-6 style="text-align: center;">
+            &nbsp;
+            <br /> &nbsp;
+          </ion-col>
+          <ion-col text-center col-3 style="text-align: center;">&nbsp;</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col text-center col-6 style="text-align: center;">
+            <button clear item-center style="background-color: transparent;" (click)="GotoPage('SCHEDULE')">
+              <img src="assets/imgs/schedule.png">
+            </button>
+          </ion-col>
+          <ion-col text-center col-6 style="text-align: center;">
+            <button clear item-center style="background-color: transparent;" (click)="GotoPage('OMM')">
+              <img src="assets/imgs/omm.png">
+            </button>
+          </ion-col>
+          <ion-col text-center col-6 style="text-align: center;">
+            <button clear item-center style="background-color: transparent;" (click)="GotoPage('LOGBOOK')">
+              <img src="assets/imgs/logbook.png">
+            </button>
+          </ion-col>
+          <ion-col text-center col-6 style="text-align: center;">
+            <button clear item-center style="background-color: transparent;" (click)="GotoPage('ASSESSMENT')">
+              <img src="assets/imgs/assessment.png">
+            </button>
+          </ion-col>
+                  <ion-col text-center col-6 style="text-align: center;">
+            <button clear item-center style="background-color: transparent;" (click)="GotoPage('QR')">
+              <img src="assets/imgs/QR.png">
+            </button>
+          </ion-col>
+          <ion-col text-center col-6 style="text-align: center;">
+              <button clear item-center style="background-color: transparent;" (click)="GotoPage('SETTING')">
+                <img src="assets/imgs/setting.png">
+              </button>
+          </ion-col>
+          <!-- <ion-col text-center col-6 style="text-align: center;">
+            <button clear item-center style="background-color: transparent;" (click)="CallScaner()">
+              <img src="assets/imgs/QR.png">
+            </button>
+            <ion-input id="txtQR_DATA">{{QR_DATA}}</ion-input>
+          </ion-col> -->
+          <!-- <ion-col text-center col-6 style="text-align: center;">
+            <button clear item-center style="background-color: transparent;" (click)="GotoPage('HOME')">
+              <img src="assets/imgs/myprofile.png">
+            </button>
+          </ion-col> -->
+          
+        </ion-row>
+      </ion-grid>
+</ion-content>

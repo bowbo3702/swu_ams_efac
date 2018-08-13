@@ -1,9 +1,9 @@
-import { Component, animate } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { Platform } from 'ionic-angular';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { SQLite } from '@ionic-native/sqlite';
 
 //import page
 // import { LoginSwitchPage } from '../login-switch/login-switch';
@@ -86,49 +86,53 @@ export class LoginPage {
   }
   login() {
     //รับข้อมูลจากฟอร์ม
-    let sUsername = this.formLogin.controls['txtUsername'].value;
-    let sPassword = this.formLogin.controls['txtPassword'].value;
-    console.log("sUsername " + sUsername);
-    console.log("sPassword " + sPassword);
-    if (sUsername != undefined && sUsername != "" && sPassword != ""&& sPassword != undefined) {
-      this.usrProvider.login(sUsername, sPassword).then((res: UserAccount) => {
-        this.UserData = res;
-        if (res != undefined && res.sResult != null) {
-          //login success
-          console.log("res " + res.sFirstName);
-          if (res.sResult == "Success") {
-            console.log(this.UserData);
-            this.storage.set("IsLogined", true);
-            this.storage.get('PIN').then((sPinCode: string) => {
-              console.log('login storage.get PIN :' + sPinCode);
+    this.storage.ready().then(() => { 
+          let sUsername = this.formLogin.controls['txtUsername'].value;
+          let sPassword = this.formLogin.controls['txtPassword'].value;
+          console.log("sUsername " + sUsername);
+          console.log("sPassword " + sPassword);
+          if (sUsername != undefined && sUsername != "" && sPassword != ""&& sPassword != undefined) {
+            this.usrProvider.login(sUsername, sPassword).then((res: UserAccount) => {
+              this.UserData = res;
+              if (res != undefined && res.sResult != null) {
+                //login success
+                console.log("res " + res.sFirstName);
+                if (res.sResult == "Success") {
+                  console.log(this.UserData);
+                  this.storage.set("IsLogined", true);
+                  this.storage.get('PIN').then((sPinCode: string) => {
+                    console.log('login storage.get PIN :' + sPinCode);
+                  });
+                    //go to Set PIN
+                    this.navCtrl.setRoot(SetpinPage, { UserAccountData: res});
+                }
+                else {
+                  //แจ้งเตือนกรณี login not success
+                  let alert = this.popup.create({ title: res.sMsg1, buttons: ['ตกลง'] });
+                  alert.present();
+                }
+              }
+              else {
+                this.presentToast("No response.");
+              }
+            }).catch(error => {
+              this.presentToast("Login error." + "=>" + error);
             });
-              //go to Set PIN
-              this.navCtrl.setRoot(SetpinPage);
           }
           else {
-            //แจ้งเตือนกรณี login not success
-            let alert = this.popup.create({ title: res.sMsg1, buttons: ['ตกลง'] });
-            alert.present();
+            if (sUsername == undefined||sUsername == "" )
+            {
+              //แจ้งเตือนกรณีไม่กรอก username 
+              this.presentToast("กรุณากรอก Username");
+            }
+            else{
+              //แจ้งเตือนกรณีไม่กรอก  password
+              this.presentToast("กรุณากรอก Password");
+            }
           }
-        }
-        else {
-          this.presentToast("No response.");
-        }
-      }).catch(error => {
-        this.presentToast("Login error." + "=>" + error);
-      });
-    }
-    else {
-      if (sUsername == undefined||sUsername == "" )
-      {
-        //แจ้งเตือนกรณีไม่กรอก username 
-        this.presentToast("กรุณากรอก Username");
-      }
-      else{
-         //แจ้งเตือนกรณีไม่กรอก  password
-         this.presentToast("กรุณากรอก Password");
-      }
-    }
+  }).catch((err)=>{
+    console.log(err);
+  });
   }
   //show toast
   presentToast(sMsg) {
