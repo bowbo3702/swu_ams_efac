@@ -1,0 +1,8 @@
+{
+  "name": "MED_AMS_eFac",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "a714a26c"
+}
