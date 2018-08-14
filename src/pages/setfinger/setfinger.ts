@@ -67,24 +67,7 @@ export class SetfingerPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SetfingerPage');
   }
- async CheckFingerAIO_async(){
-   try
-   {
-     this.platform.ready();
-    const avail = await this.finger.isAvailable();
-    if(avail === "OK"){
-      this.finger.show({
-        clientId: 'Fingerprint-Demo',
-        //clientSecret: 'password', // Only Android
-        //localizedFallbackTitle: 'Use Pin', // Only iOS
-        //localizedReason: 'Please authenticate' // Only iOS
-      });
-    }
-  }
-  catch(e){
-    this.presentToast('Error:' + e);
-  }
-}
+
   CheckFingerAIO(): boolean{
     console.log('check');
     let result = false;
