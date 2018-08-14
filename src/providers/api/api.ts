@@ -17,13 +17,14 @@ export class ApiProvider {
   LOG_Url: string;
   ASS_Url: string;
   AMS_Url: string;
+  resdata :Observable<any>;
   constructor(public http: Http) {
     //Softthai
-    this.apiUrl = "http://www.softthai.com/Med_ams/Mobile/Ashx/";
-    this.AMS_Url = "http://www.softthai.com/Med_ams/";
-    this.OMM_Url = "http://www.softthai.com/Med_ams/";
-    this.LOG_Url = "http://www.softthai.com/Med_ams/";
-    this.ASS_Url = "http://www.softthai.com/Med_ams/";
+    // this.apiUrl = "http://www.softthai.com/Med_ams/Mobile/Ashx/";
+    // this.AMS_Url = "http://www.softthai.com/Med_ams/";
+    // this.OMM_Url = "http://www.softthai.com/Med_ams/";
+    // this.LOG_Url = "http://www.softthai.com/Med_ams/";
+    // this.ASS_Url = "http://www.softthai.com/Med_ams/";
 
     //Production
     // this.apiUrl = "http://www.med-swu.com/ams/Mobile/Ashx/";
@@ -31,6 +32,13 @@ export class ApiProvider {
     // this.OMM_Url = "http://www.med-swu.com/ams/";
     // this.LOG_Url = "http://www.med-swu.com/ams/";
     // this.ASS_Url = "http://www.med-swu.com/ams/";
+
+    //DEV
+    this.apiUrl = "http://dev2012/med_ams/Mobile/Ashx/";
+    this.AMS_Url = "http://dev2012/med_ams/Med_ams/";
+    this.OMM_Url = "http://dev2012/med_ams/Med_ams/";
+    this.LOG_Url = "http://dev2012/med_ams/Med_ams/";
+    this.ASS_Url = "http://dev2012/med_ams/Med_ams/";
   }
   //get api url
   getApiUrl(): string { return this.apiUrl; }
@@ -51,9 +59,10 @@ export class ApiProvider {
   //<any[]> res.json() แปลง json จากฝั่ง backend ให้กับโมเดล คลาส any
   getApiEndpoint(sApiFileName: string): Observable<any> {
     return this.http.get(this.apiUrl + sApiFileName)
-      .map((res: Response) => <any>res.json())
+      .map((res: Response) => <any> res.json())
       .catch(this.handleError);
   }
+
   //ดึงข้อมูลจาก Backend ด้วย method get() ตาม URL ที่ระบุไว้ พร้อม return object
   getApiEndpointWithObject(sApiFileName: string, sJsArrObject: string): Promise<any> {
     return new Promise((resolve, reject) => {

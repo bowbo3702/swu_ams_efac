@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Storage } from '@ionic/storage';
 import { Platform } from 'ionic-angular';
 import { SQLite } from '@ionic-native/sqlite';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 //import page
 // import { LoginSwitchPage } from '../login-switch/login-switch';
  import { LockscreenPage } from '../lockscreen/lockscreen';
@@ -30,6 +31,7 @@ export class LoginPage {
   txtPassword: FormControl;
   UserData: UserAccount;
   isLogin: boolean;
+  data: Observable<any>;
   constructor(public navCtrl: NavController, public navParams: NavParams
     , private formBdr: FormBuilder
     , public toast: ToastController
@@ -39,7 +41,8 @@ export class LoginPage {
     , public platform: Platform
     , public sqlite: SQLite
     , public storage: Storage
-    , public finger:FingerprintAIO) {
+    , public finger:FingerprintAIO
+    ,public httpcli :HttpClient) {
        //ตรวจสอบความถูกต้องของฟอร์ม เช่น required, minLength
     this.txtUsername = this.formBdr.control('', Validators.required);
     this.txtPassword = this.formBdr.control('', Validators.compose([Validators.required, Validators.minLength(8)]));
@@ -53,6 +56,7 @@ export class LoginPage {
     this.storage.get('username').then((name) => {
       console.log('Me: Hey, ' + name + '! You have a very nice name.');
     });
+  
   }
 
   ionViewDidLoad() {
@@ -92,8 +96,10 @@ export class LoginPage {
           let sPassword = this.formLogin.controls['txtPassword'].value;
           console.log("sUsername " + sUsername);
           console.log("sPassword " + sPassword);
+          this.presentToast("storage.ready"+"sUsername " + sUsername+"sPassword " + sPassword );
           if (sUsername != undefined && sUsername != "" && sPassword != ""&& sPassword != undefined) {
             this.usrProvider.login(sUsername, sPassword).then((res: UserAccount) => {
+              this.presentToast("usrProvider.login 98");
               this.UserData = res;
               if (res != undefined && res.sResult != null) {
                 //login success
@@ -114,10 +120,10 @@ export class LoginPage {
                 }
               }
               else {
-                this.presentToast("No response.");
+                this.presentToast("ไม่พบผู้ใช้");
               }
             }).catch(error => {
-              this.presentToast("Login error." + "=>" + error);
+              this.presentToast("this.usrProvider.login Login error." + "=>" + error);
             });
           }
           else {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-
+import { ToastController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -23,7 +23,8 @@ export class UserloginProvider {
   constructor(public http: Http, public apiProvider: ApiProvider
     , public platform: Platform
     , public sqlite: SQLite
-    , public storage: Storage) {
+    , public storage: Storage
+    , public toast: ToastController) {
 
   }
   //get info data
@@ -46,7 +47,10 @@ export class UserloginProvider {
   }
   //check username and password
   chkLogin(sUserName: string, sPassword: string): Observable<UserAccount> {
+    
     let sApiFileName = 'std_login.ashx?mode=login&username=' + sUserName + '&password=' + sPassword + '';
+     //แจ้งเตือนกรณีไม่กรอก  password
+    this.presentToast("sApiFileName : "+sApiFileName);
     return this.apiProvider.getApiEndpoint(sApiFileName);
   }
   getUserNameFromStorage(): Promise<any> {
@@ -162,5 +166,17 @@ export class UserloginProvider {
         }, (reason) => reject(false));
       });
     });
+  }
+   //show toast
+   presentToast(sMsg) {
+    let toast = this.toast.create({
+      message: sMsg,
+      duration: 3000,
+      position: 'buttom'
+    });
+    toast.onDidDismiss(() => {
+      //console.log('Dismissed toast');
+    });
+    toast.present();
   }
 }
