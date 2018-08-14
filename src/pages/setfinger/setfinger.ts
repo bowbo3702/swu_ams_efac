@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams , AlertController, ToastController } from 'ionic-angular';
-// import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 import { TouchID } from '@ionic-native/touch-id';
 import { Platform } from 'ionic-angular';
@@ -73,6 +72,7 @@ export class SetfingerPage {
     let result = false;
     this.finger.isAvailable().then(res =>{
       console.log(res);
+      this.presentToast('Finger is result ' +  res);
       result =  (res == "OK");
     }).catch(err => {
       console.log(err);
@@ -82,7 +82,9 @@ export class SetfingerPage {
   }
   CallFingerPrintAIO(){
   
-    this.presentToast('Finger is available ' +   this.CheckFingerAIO());
+    // this.presentToast('Finger is available ' +   this.CheckFingerAIO());
+    console.log("CallFingerPrintAIO");
+    console.log(this.finger.isAvailable());
     this.finger.isAvailable().then(res =>{
     this.finger.show({
       clientId: 'Fingerprint-Demo',
@@ -161,7 +163,17 @@ export class SetfingerPage {
     .then((result)=> {
       if(result.isAvailable){
         // it is available
-        this.androidFingerprintAuth.encrypt({ clientId: 'myAppName', username: 'myUsername', password: 'myPassword' })
+        var encryptConfig = {
+          clientId: "myAppName",
+          username: "currentUser",
+          password: "currentUserPassword",
+          maxAttempts: 5,
+          locale: "th_TH",
+          dialogTitle: "Hey dude, your finger",
+          dialogMessage: "Put your finger on the device",
+          dialogHint: "No one will steal your identity, promised"
+      };
+        this.androidFingerprintAuth.encrypt(encryptConfig)
           .then(result => {
              if (result.withFingerprint) {
                  console.log('Successfully encrypted credentials.');

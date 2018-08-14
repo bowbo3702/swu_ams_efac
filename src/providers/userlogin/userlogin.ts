@@ -94,7 +94,7 @@ export class UserloginProvider {
         this.storage.get("useraccount").then((value: UserAccount) => {
 
           //ลบออกจากฐานข้อมูล
-          if (this.platform.is('core')) {
+          if (this.platform.ready()) {
             this.sqlite.create({
               name: "data.db", location: "default"
             }).then((db: SQLiteObject) => {
@@ -113,7 +113,7 @@ export class UserloginProvider {
   }
   //create table login local
   CreateTableLogin(): void {
-    if (this.platform.is('core')) {
+    if (this.platform.ready()) {
       // ถ้า platform พร้อมใช้งาน
       this.platform.ready().then(() => {
         // สร้างฐานข้อมูลชื่อว่า data.db

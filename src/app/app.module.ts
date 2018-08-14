@@ -16,11 +16,12 @@ import {ConfirmpinPage} from '../pages/confirmpin/confirmpin';
 import {SetfingerPage} from '../pages/setfinger/setfinger';
 import {MenuPage} from '../pages/menu/menu';
 import {ProfilePage} from '../pages/profile/profile';
-import { QrcodePage} from '../pages/qrcode/qrcode';
-import { MeetingListPage} from '../pages/meeting-list/meeting-list';
-import { MeetingDetailPage} from '../pages/meeting-detail/meeting-detail';
-import { AutoCompletePersonPage} from '../pages/auto-complete-person/auto-complete-person';
+import {QrcodePage} from '../pages/qrcode/qrcode';
+import {MeetingListPage} from '../pages/meeting-list/meeting-list';
+import {MeetingDetailPage} from '../pages/meeting-detail/meeting-detail';
+import {AutoCompletePersonPage} from '../pages/auto-complete-person/auto-complete-person';
 import {SettingPage} from  '../pages/setting/setting';
+import {LockscreenPage} from  '../pages/lockscreen/lockscreen';
 //
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -65,7 +66,8 @@ import { OmmMeetingListProvider } from '../providers/omm-meeting-list/omm-meetin
     MeetingListPage,
     MeetingDetailPage,
     AutoCompletePersonPage,
-    SettingPage
+    SettingPage,
+    LockscreenPage
   ],
   imports: [
     BrowserModule,
@@ -96,7 +98,8 @@ import { OmmMeetingListProvider } from '../providers/omm-meeting-list/omm-meetin
     MeetingListPage,
     MeetingDetailPage,
     AutoCompletePersonPage,
-    SettingPage
+    SettingPage,
+    LockscreenPage
   ],
   providers: [
     StatusBar,

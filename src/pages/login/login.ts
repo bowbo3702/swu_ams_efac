@@ -7,7 +7,7 @@ import { SQLite } from '@ionic-native/sqlite';
 
 //import page
 // import { LoginSwitchPage } from '../login-switch/login-switch';
-// import { LockscreenPage } from '../lockscreen/lockscreen';
+ import { LockscreenPage } from '../lockscreen/lockscreen';
  import { SetpinPage } from '../setpin/setpin';
  import {SetfingerPage} from '../setfinger/setfinger';
 import {ForgotpasswordPage} from '../forgotpassword/forgotpassword';
@@ -73,7 +73,8 @@ export class LoginPage {
           console.log(val);
           if (val) {
             this.storage.set("IsLogined", true);
-            //this.navCtrl.setRoot(LoginSwitchPage);//this.navCtrl.setRoot(LockscreenPage);
+            //this.navCtrl.setRoot(LoginSwitchPage);
+            this.navCtrl.setRoot(LockscreenPage);
             return false;
           } else { return false; }
         });
