@@ -39,6 +39,15 @@ export class LockscreenPage {
    , public finger :FingerprintAIO
   , private androidFingerprintAuth: AndroidFingerprintAuth
   ) {
+    this.sPIN = "";
+    this.sPIN1 = "";
+    this.sPIN2 = "";
+    this.sPIN3 = "";
+    this.sPIN4 = "";
+    this.sPIN5 = "";
+    this.sPIN6 = "";
+    this.isShowBtnBackSpace = false;
+    this.isTouchIdAvailable = false;
     this.platform.ready().then(() => {
       touchId.isAvailable().then(
         res => this.isTouchIdAvailable = true,
