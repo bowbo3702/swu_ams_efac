@@ -81,6 +81,8 @@ export class SetfingerPage {
     return result;
   }
   CallFingerPrintAIO(){
+  
+    this.presentToast('Finger is available ' +   this.CheckFingerAIO());
     this.finger.isAvailable().then(res =>{
     this.finger.show({
       clientId: 'Fingerprint-Demo',
@@ -90,6 +92,8 @@ export class SetfingerPage {
     })
       .then((result: any) => {
         //this.navCtrl.setRoot('HomePage');
+
+    this.presentToast('res ' +   result);
       })
       .catch((error: any) => {
         console.log('err: ', error);
